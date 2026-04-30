@@ -1,8 +1,3 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
 trigger:
 - main
 
@@ -11,36 +6,38 @@ pool:
 
 steps:
 
-# Install Terraform (optional if already available)
 - task: TerraformInstaller@1
   inputs:
     terraformVersion: 'latest'
 
-# Terraform Init (with remote backend)
+# INIT
 - task: TerraformTaskV4@4
   displayName: Terraform Init
   inputs:
     provider: 'azurerm'
     command: 'init'
+    workingDirectory: 'environments/dev'
     backendServiceArm: 'backend-storage-conn'
     backendAzureRmResourceGroupName: 'backend-rg'
     backendAzureRmStorageAccountName: 'bkendsta111'
     backendAzureRmContainerName: 'tfstate'
     backendAzureRmKey: 'dev.terraform.tfstate'
 
-# Terraform Plan
+# PLAN
 - task: TerraformTaskV4@4
   displayName: Terraform Plan
   inputs:
     provider: 'azurerm'
     command: 'plan'
+    workingDirectory: 'environments/dev'
     environmentServiceNameAzureRM: 'backend-storage-conn'
 
-# Terraform Apply
+# APPLY
 - task: TerraformTaskV4@4
   displayName: Terraform Apply
   inputs:
     provider: 'azurerm'
     command: 'apply'
+    workingDirectory: 'environments/dev'
     commandOptions: '-auto-approve'
     environmentServiceNameAzureRM: 'backend-storage-conn'
