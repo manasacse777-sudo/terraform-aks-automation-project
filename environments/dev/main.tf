@@ -24,7 +24,7 @@ module "aks" {
     location = var.location
     rg_name = module.rg.rg_name
 
-    node_count = 3
+    node_count = 2
     node_vm_size = "standard_b2ls_v2"
   
 }
