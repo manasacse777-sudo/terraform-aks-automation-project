@@ -17,7 +17,7 @@ steps:
     provider: 'azurerm'
     command: 'init'
     workingDirectory: 'environments/dev'
-    backendServiceArm: 'aks-tf-conc'
+    backendServiceArm: 'backend-storage-conn'
     backendAzureRmResourceGroupName: 'backend-rg'
     backendAzureRmStorageAccountName: 'bkendsta111'
     backendAzureRmContainerName: 'tfstate'
@@ -30,7 +30,7 @@ steps:
     provider: 'azurerm'
     command: 'plan'
     workingDirectory: 'environments/dev'
-    environmentServiceNameAzureRM: 'aks-tf-conc'
+    environmentServiceNameAzureRM: 'backend-storage-conn'
 
 # APPLY
 - task: TerraformTaskV4@4
@@ -40,4 +40,4 @@ steps:
     command: 'apply'
     workingDirectory: 'environments/dev'
     commandOptions: '-auto-approve'
-    environmentServiceNameAzureRM: 'aks-tf-conc'
+    environmentServiceNameAzureRM: 'backend-storage-conn'
