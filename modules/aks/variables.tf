@@ -16,7 +16,7 @@ variable "aks_name" {
     variable "node_count" {
       description = "The number of nodes in the AKS cluster."
       type        = number
-      default     = 2
+      default     = 3
     }
     variable "node_vm_size" {
       description = "The size of the virtual machines for the AKS cluster nodes."
